@@ -1,0 +1,86 @@
+body {
+    font-family: Garamond;
+    background-color: #2b2b2c;
+}
+
+h1 {
+    color: #ffffff;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: center;
+    font-size: 40px;
+}
+
+h3 {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    margin-top: 3px;
+    text-align: center;
+}
+
+#chatbox {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    margin-top: 60px;
+}
+
+#userInput {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    margin-top: 60px;
+    
+}
+
+#textInput {
+    width: 90%;
+    border: none;
+    color: #ffff;
+    font-family: monospace;
+    font-size: 17px;
+    background-color: #3c4244;
+}
+
+#buttonInput {
+    padding: 3px;
+    font-family: monospace;
+    font-size: 17px;
+    border:none;
+    background: none;
+    cursor: pointer;
+}
+
+.userText {
+    color: white;
+    font-family: monospace;
+    font-size: 17px;
+    text-align: right;
+    line-height: 30px;
+}
+
+.userText span {
+    background-color: #05c565;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.botText {
+    color: #ffffff;
+    font-family: monospace;
+    font-size: 17px;
+    text-align: left;
+    line-height: 30px;
+}
+
+.botText span {
+    background-color: #3c4244;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.send {
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+}
