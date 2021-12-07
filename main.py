@@ -1,20 +1,22 @@
-from flask import Flask,render_template,request, url_for
+from flask import Flask, render_template, redirect, request, session, g, url_for
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
+import botDb as BD
 
 app = Flask(__name__) 
 english_bot = ChatBot("Chatterbot",storage_adapter="chatterbot.storage.SQLStorageAdapter")
 trainer = ChatterBotCorpusTrainer(english_bot)
 trainer.train("chatterbot.corpus.english")
-trainer.train("./data.json")
+trainer.train("./data/data.json")
+app.secret_key = BD.si
 
 @app.route("/")
 def index():
-     return render_template("index.html") #to send context to html
+     return render_template("index.html")
 
-@app.route("/get")
+@app.route("/get", methods=['GET','POST'])
 def get_bot_response():
-     userText = request.args.get("msg") #get data from input,we write js  to index.html
+     userText = request.args.get("msg")
      return str(english_bot.get_response(userText))
 
 if __name__ == "__main__":
