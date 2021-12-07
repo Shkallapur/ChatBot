@@ -26,11 +26,8 @@ def update():
     cursor.execute(SQLCommand, val)
     print("Data Successfully Updated")
 
-def tojson():
-    cursor.execute('select session_id, user_name as [demographics.user_name], password as [demographics.password] from [User] for json path, root("user")')
-
 update()
 select()
-tojson()
+
 conn.commit()
 conn.close()
