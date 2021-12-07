@@ -4,35 +4,69 @@
     <title>Chat bot</title>
     <link rel="stylesheet" href="static\css\styles.css">
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   </head>
   <body>
-  <h1>Chat bot</h1>
-  <div>
-    <div id = "chatbox">
-      <p class = "botText"><span>Hi! Iam your Virtual Assistant.</span></p>
+   <div id="chat">
+      <div class="header">
+        <img class="logo" src="static\img\logo.png">
+        <h1>Sirius</h1>
+        <img onclick="closeBot(), window.location.reload(true)" class="close" src="static\img\close.png">
+      </div>
+      <div>
+        <div id="chatbody">
+          <p class="botText">
+            <span>
+              Hey there! This is SiriusBot. How may I help you?
+            </span>
+          </p>
+          <script src="static\js\script.js"></script>
+        </div>
+        <hr/>
+        <div class="footer" id="userInput">
+          <input class="active" id="textInput" type="text" name="msg" placeholder="Type your message here">
+          <button id="buttonInput">
+            <img id="send" src="static\img\send.png">
+          </button>
+        <script type="text/javascript">
+
+            $("#textInput").keypress(function(e) {
+              if(e.which == 13) {
+                getBotResponse();
+              }
+            });
+            $("#buttonInput").click(function() {
+                getBotResponse();
+              })
+          </script>
+        </div>
+        <script type="text/javascript">
+          const getBotResponse = () => {
+            var rawText = $("#textInput").val();
+            var userHtml = '<p class = "userText"><span>' + rawText + '</span></p>';
+            $("#textInput").val("");
+            $("#chatbody").append(userHtml);
+            document.getElementById('userInput').scrollIntoView({block:'start',behaviour:'smooth'});
+            $.get("/get", {msg:rawText }).done(function(data) {
+              var botHtml = '<p class ="botText"><span>' + data + '</span></p>';
+              $("#chatbody").append(botHtml);
+              document.getElementById('userInput').scrollIntoView({block : 'start',behaviour:'smooth'});
+            });
+          }
+
+          const openBot = () => {
+              document.getElementById("chat").style.display = "block";
+          }
+
+          const closeBot = () => {
+            document.getElementById("chat").style.display = "none";
+          }
+        </script>
+      </div>
     </div>
-    <div id = "userInput">
-      <input id="textInput" type="text" name="msg" placeholder="Chat With Me">
-      <button id="buttonInput"><img class="send" src="static\img\send.png"></button>
-    </div>
-    <script>
-      const getBotResponse = () => {
-        var rawText = $("#textInput").val();
-        var userHtml = '<p class = "userText"><span>' + rawText + '</span></p>';
-        $("#textInput").val("");
-        $("#chatbox").append(userHtml);
-        document.getElementById('userInput').scrollIntoView({block:'start',behaviour:'smooth'});
-        $.get("/get", {msg:rawText }).done(function(data) {
-          var botHtml = '<p class ="botText"><span>' + data + '</span></p>';
-          $("#chatbox").append(botHtml);
-          document.getElementById('userInput').scrollIntoView({block : 'start',behaviour:'smooth'});
-        });
-      }
-      $("#textInput").keypress(function(e) {
-        if(e.which == 13) {
-          getBotResponse();
-        }
-      });
+    <img class="chaticon" onclick="openBot()" src="static\img\chat.png">
+  </body>
+</html>  
       $("#buttonInput").click(function() {
           getBotResponse();
       })
