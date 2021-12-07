@@ -1,6 +1,8 @@
 {
-  "categories": {
+  "intent": {
     "conversations": [
+      "shrihari",
+      "enter password",
       "Good Evening",
       "Good Evening",
       "Hello", 
